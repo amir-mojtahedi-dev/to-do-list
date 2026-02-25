@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at top right, #1e3a8a, #0f172a);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    overflow: hidden;
+}
+/* Custom Scrollbar for better iOS look */
+.list-container::-webkit-scrollbar {
+    width: 4px;
+}
+.list-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 400px) {
+    .iphone-container {
+        width: 95%;
+        height: 95vh;
+        padding: 20px 15px;
+        border-radius: 25px;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+    }
+    
+    .todo-text {
+        font-size: 14px;
+        text-align: left; /* LTR adjustment */
+    }
+}
+
+/* LTR Fix for todo-text (Since we changed HTML to LTR) */
+.todo-text {
+    flex: 1;
+    font-size: 16px;
+    color: #e2e8f0;
+    cursor: pointer;
+    text-align: left; /* Alignment changed for English */
+}
+.iphone-container {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    width: 90%; /* Responsive width */
+    max-width: 380px; /* Maximum width for larger screens */
+    height: 85vh; /* Responsive height based on viewport */
+    max-height: 650px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    transition: 0.3s all ease;
+}
+
+.header {
+    display: flex;
+    flex-flow: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header h1 { font-size: 32px; font-weight: 700; }
+.header span { color: #60a5fa; font-size: 14px; }
+
+.profile-icon {
+    width: 45px; height: 45px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-weight: bold;
+}
+
+.input-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+#todo-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 14px 18px;
+    color: white;
+    outline: none;
+}
+
+#add-btn {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    width: 50px;
+    font-size: 28px;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#add-btn:hover { background: #60a5fa; transform: scale(1.1); }
+
+.list-container {
+    flex: 1;
+    overflow-y: auto;
+}
+
+ul { list-style: none; }
+
+/* task row*/
+.todo-item {
+    background: rgba(255, 255, 255, 0.05);
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.3s all ease;
+}
+
+/* (iOS Style Checkbox) */
+.check-circle {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #3b82f6;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    flex-shrink: 0;
+}
+
+/* Checked*/
+.todo-item.completed .check-circle {
+    background: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.todo-item.completed .check-circle::after {
+    content: '✓';
+    color: white;
+    font-size: 14px;
+}
+
+
+
+.todo-item.completed .todo-text {
+    color: #64748b;
+    text-decoration: line-through;
+}
+
+/* remove btn*/
+.delete-btn {
+    opacity: 0; /* فقط موقع هاور دیده شود */
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.todo-item:hover .delete-btn {
+    opacity: 1;
+}
+
+.todo-text { font-size: 16px; cursor: pointer; flex: 1; text-align: right; }
+
+.todo-item.completed { opacity: 0.4; }
+.todo-item.completed .todo-text { text-decoration: line-through; }
+
+.delete-btn {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.delete-btn:hover { background: #ef4444; color: white; }
+
+.footer-stats {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #64748b;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
